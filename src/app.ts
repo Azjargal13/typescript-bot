@@ -10,6 +10,20 @@ const app = new App({
     receiver: receiver
 });
 
+// // Health Check Endpoint
+// receiver.app.get('/', (_, res) => {
+//     res.status(200).send();
+// });
+
+// receiver.app.post('slack/events', (_, res) => {
+//     res.status(200).send();
+// });
+
+// Listens to incoming messages that contain "hello"
+app.message('hello', ({ message, say }) => {
+    // say() sends a message to the channel where the event was triggered
+    say(`Hey there <@${message.user}>!`);
+});
 
 (async () => {
     // Start your app
